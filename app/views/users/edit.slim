@@ -1,0 +1,14 @@
+.container
+  br
+  br
+  .row
+    .col-md-12
+      h1 Edit #{@user.username}
+  hr
+  .row
+    = simple_form_for @user do |f|
+      = f.error_notification
+      = f.input :name
+      = f.input :email
+      = f.input :username
+      = f.submit value: "Add User",class: 'btn btn-primary'

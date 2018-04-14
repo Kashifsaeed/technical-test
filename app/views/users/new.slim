@@ -1,0 +1,17 @@
+.container
+  br
+  br
+  .row
+    .col-md-12
+      h1 New User
+  hr
+  .row
+    = simple_form_for @user do |f|
+      = f.error_notification
+      = f.hidden_field :role
+      = f.input :name
+      = f.input :email
+      = f.input :username
+      = f.input :password
+      = f.input :password_confirmation
+      = f.submit value: "Add User",class: 'btn btn-primary'

@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  validates :email,:username, presence: true, uniqueness: true
+  attr_accessor :skip_password_validation
+  validates :name,:email,:username, presence: true
+  validates :email,:username, uniqueness: true
   validates :username, length: { maximum: 15 }
 
   PASSWORD_FORMAT = /\A
@@ -15,7 +17,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, presence: true, length: { minimum: 10 }, format: {
           with: PASSWORD_FORMAT,
           message: "must contain a lowercase letter, an uppercase letter, a digit, and a special character!"
-        }
+        }, unless: :skip_password_validation
+  
   def set_default_role
     self.role ||= :user
   end

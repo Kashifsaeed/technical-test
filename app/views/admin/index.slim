@@ -1,0 +1,35 @@
+.container
+  br
+  br
+  .row
+    .col-md-12
+      h1 User List
+  .row
+    .col-md-12
+      = link_to new_user_path, class: 'btn btn-primary pull-right' do
+        i.fa.fa-plus
+        span = " Add New User"
+
+  .row
+    table.table
+      thead
+        th Id
+        th Name
+        th Email
+        th User Name
+        th Action
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.id
+            td = user.name
+            td = user.email
+            td = user.username
+            td
+              = link_to edit_user_path(user),title: "Edit this account" do
+                i.fa.fa-pencil
+                span = " Edit"
+              br
+              = link_to user_path(user), method: :delete, class: 'txt-red', title: "Remove this account", data: {confirm: 'Are you sure to remove this account?'} do
+                i.fa.fa-remove
+                span = " Remove"

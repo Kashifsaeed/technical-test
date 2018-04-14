@@ -1,0 +1,12 @@
+.container
+  br
+  br
+  .row
+    .col-md-12
+      - if current_user
+        h1 Welcome #{current_user.username}
+      - else
+        h1 Welcome Guest
+  .row
+    p
+      | This is technical test for Ruby on Rails developer
